@@ -1,9 +1,9 @@
-instances = {}
-def singleton(instance):
-# On @ decoration
+def singleton(cls):
+    '''Class-based singleton enforcement'''
+    instance = None
     def on_call(*args, **kwargs):
-        # On instance creation
-        if instance = not in instances:
-            instances[instance] = instance(*args, **kwargs)
-        return instances[instance]
-    return on_call 
+        nonlocal instance
+        if instance is None:
+            instance = cls(*args, **kwargs)
+        return instance
+    return on_call
