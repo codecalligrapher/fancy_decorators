@@ -7,7 +7,6 @@ Welcome to fancy_decorators's documentation!
 
    readme
    installation
-   usage
    modules
    contributing
    authors

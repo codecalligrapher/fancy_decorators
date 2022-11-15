@@ -140,6 +140,29 @@ Calling the above results in the following being stored in `metrics_df`:
         0.5	1	0.7375
         3	0.7375
 
+PySpark Decorators
+-------
+
+PySpark-specific helper functions
+
+datefixer
+```````````````````
+
+This decorator allows standardization of date-columns in functions that operate  on pyspark dataframes.
+
+.. code:: python
+
+        from pyspark_decorators import datefixer
+
+        date_cols = {
+          'col1': 'yyyy-MM-dd'
+        }
+
+        @datefixer(dateconf=date_cols)
+        def clean_one(df):
+          # do some cleaning
+          return df
+
 Credits
 -------
 
