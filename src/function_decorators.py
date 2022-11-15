@@ -29,3 +29,21 @@ def log_metrics(conf,metrics_df):
 
         return wrapper
     return _decorate
+
+def typetest(**argchecks):
+    def _decorate(func):
+        def wrapper(*args, **kwargs):
+            for (argname, type) in argchecks.items():
+                if argname in kwargs:
+                    if not isinstance(kwargs[argname], type):
+                        raise TypeError(errmsg)
+                elif argname in args:
+                    position = args.index(argname)
+                    if not isinstance(args[position], type):
+                        raise TypeError(errmsg)
+                else:
+                    # Assume not passed: default
+                    pass
+            return func(*args, **kwargs)
+        return wrapper 
+    return _decorate 

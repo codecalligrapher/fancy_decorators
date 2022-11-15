@@ -1,10 +1,8 @@
-#!/usr/bin/env python
-
 """Tests for `fancy_decorators` package."""
-
 import pytest
+import importlib
 
-from fancy_decorators import log_metrics
+from function_decorators import typetest, log_metrics
 
 def test_metrics():
     """Sample pytest test function with the pytest fixture as an argument."""
@@ -24,3 +22,18 @@ def test_metrics():
     @log_metrics(conf, metrics)
     def fn():
         print(1)
+
+def test_sample():
+    assert 1 < 2
+
+def test_typecheck():
+    '''Testing typecheck decorator'''
+    try:
+        @typetest(a=int)
+        def foo(a, b):
+            return a, b
+            
+        assert foo(a=1, b=2) == (1, 2)
+        
+    except Exception as e:
+        pytest.fail(e)
